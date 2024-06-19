@@ -12,6 +12,10 @@ const Sidebar = () => {
         </div>
         <div className="px-7 text-center">
           <ul className="text-white text-lg flex flex-col gap-7 text-left mt-10">
+          <Link to="/customer">
+              <li className="flex gap-4 items-center hover:underline">Customer</li>
+            </Link>
+            <hr className="opacity-50" />
             <Link to="/employee">
               <li className="flex gap-4 items-center hover:underline">Employees</li>
             </Link>
@@ -20,12 +24,16 @@ const Sidebar = () => {
               <li className="flex gap-4 items-center hover:underline">Documents</li>
             </Link>
             <hr className="opacity-50" />
+            <Link to="/meeting">
+              <li className="flex gap-4 items-center hover:underline">Meetings</li>
+            </Link>
+            <hr className="opacity-50" />
             <Link to="/calendar">
               <li className="flex gap-4 items-center hover:underline">Calendar</li>
             </Link>
             <hr className="opacity-50" />
-            <Link to="/meeting">
-              <li className="flex gap-4 items-center hover:underline">Meetings</li>
+            <Link to="/risk">
+              <li className="flex gap-4 items-center hover:underline">Risk Management</li>
             </Link>
             <hr className="opacity-50" />
             <Link to="/roles">
