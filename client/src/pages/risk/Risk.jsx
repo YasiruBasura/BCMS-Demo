@@ -196,6 +196,15 @@ const Risk = () => {
                    </table>
                   </div>
 
+                <div className=" flex justify-end mt-4 mb-2 mr-4">
+                    <Link to="/docControl">
+                    <button
+                        className="mt-6 rounded-md bg-[#52B14A] px-7 py-2 text-m font-semibold text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+                    >
+                        Document History
+                    </button>
+                    </Link>
+                </div>
                   
                   </div>
 

@@ -11,6 +11,7 @@ import CreateMeeting from "./pages/meetings/CreateMeeting";
 import UpdateMeetings from "./pages/meetings/UpdateMeetings";
 import ViewMeeting from "./pages/meetings/ViewMeeting";
 import Risk from "./pages/risk/Risk";
+import DocControl from "./pages/risk/DocControl";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/meeting/updateMeetings/:id" element={<UpdateMeetings />} />
           <Route path="/meeting/viewMeetings/:id" element={<ViewMeeting />} />
           <Route path="/risk" element={<Risk />} />
+          <Route path ="/docControl" element = {<DocControl/>}/>
         </Routes>
       </div>
     </BrowserRouter>
