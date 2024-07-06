@@ -1,8 +1,13 @@
 import React from 'react'
+import Sidebar from '../../components/Sidebar'  
 
 const DocControl = () => {
     return (
-        <div className="border-2 w-full p-5 rounded-2xl mx-2 h-screen ml-96 mt-20">
+        <div className='flex'>
+        <div className='mt-20 mb-10'>
+    <Sidebar/>
+    </div>
+        <div className="border-2 w-full p-5 rounded-2xl mx-2 h-screen ml-20 mt-20">
             <div className="h-screen flex flex-col">
                 <h2 className="font-bold text-[#52B14A] text-4xl mt-3">
                     Document Control
@@ -51,6 +56,9 @@ const DocControl = () => {
                 </div>
             </div>
         </div>
+
+
+    </div>
     );
     
    

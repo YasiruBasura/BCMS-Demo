@@ -20,10 +20,10 @@ function App() {
     <Navbar />
 
       
-      <div className="flex gap-x-10">
-        <div className="fixed z-10 top-20">
-        <Sidebar />
-        </div>       
+      {/* <div className="flex gap-x-10"> */}
+        {/* <div className="fixed z-10 top-20">
+        <Sidebar /> 
+        </div>        */}
         <Routes>
         <Route path="/" element={<Home />} />
           <Route path="/employee" element={<Employee />} />
@@ -37,7 +37,7 @@ function App() {
           <Route path="/risk" element={<Risk />} />
           <Route path ="/docControl" element = {<DocControl/>}/>
         </Routes>
-      </div>
+      {/* </div> */}
     </BrowserRouter>
   );
 }

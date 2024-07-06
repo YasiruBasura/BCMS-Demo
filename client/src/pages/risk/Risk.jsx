@@ -1,17 +1,22 @@
 import { Link } from 'react-router-dom'
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
+import Sidebar from "../../components/Sidebar";
+
+
 
 const Risk = () => {
   return (
-    
-    
-    <div className=" border-2 w-full p-5 rounded-2xl mx-2 h-screen ml-96 mt-20">
+    <div className='flex'>
+        <div className='mt-20 mb-10'>
+    <Sidebar/>
+    </div>
+    <div className=" border-2 w-full p-5 rounded-2xl mx-2 h-screen ml-20 mt-20">
     <div className="h-screen flex flex-col">
       <h2 className="font-bold text-[#52B14A] text-4xl  mt-3">
         Business Imapact Analysis
       </h2>
       <div className=" border mt-5 bg-cyan-50 rounded-2xl mx-5">
-              <div className="pb-20 pt-20 pr-28 pl-28">
+              <div className=" pt-20 pr-28 pl-28">
                 <table class= 'table-fixed w-full border-separate border-spacing-4'>
                     <tbody >
                         <tr>
@@ -211,6 +216,11 @@ const Risk = () => {
                   
 
       </div>
+      </div>
+
+
+
+
       </div>
       
   )
