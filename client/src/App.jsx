@@ -12,7 +12,11 @@ import UpdateMeetings from "./pages/meetings/UpdateMeetings";
 import ViewMeeting from "./pages/meetings/ViewMeeting";
 import Risk from "./pages/risk/Risk";
 import DocControl from "./pages/risk/DocControl";
-
+import BIAmain from "./pages/risk/BIAmain";
+import OperatingSites from "./pages/risk/OperatingSites";
+import CriticalFunctions from "./pages/risk/CriticalFunctions";
+import PeaksnDeadlines from "./pages/risk/PeaksnDeadlines";
+import Resources from "./pages/risk/Resources";
 
 function App() {
   return (
@@ -34,8 +38,16 @@ function App() {
           <Route path="/meeting/createMeeting" element={<CreateMeeting />} />
           <Route path="/meeting/updateMeetings/:id" element={<UpdateMeetings />} />
           <Route path="/meeting/viewMeetings/:id" element={<ViewMeeting />} />
-          <Route path="/risk" element={<Risk />} />
+          <Route path="/bia" element={<BIAmain/>} />
+          <Route path ="/operatingSites" element = {<OperatingSites/>}/>
+          <Route path="/risk" element={<Risk/>} />
           <Route path ="/docControl" element = {<DocControl/>}/>
+          <Route path ="/criticalFunctions" element = {<CriticalFunctions/>}/>
+          <Route path ="/peaksNdeadlines" element = {<PeaksnDeadlines/>}/>  
+          <Route path ="/resources" element = {<Resources/>}/>
+         
+          
+      
         </Routes>
       {/* </div> */}
     </BrowserRouter>
