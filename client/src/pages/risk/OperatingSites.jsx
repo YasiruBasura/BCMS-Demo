@@ -1,9 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const OperatingSites = () => {
   const [siteData, setSiteData] = useState([
     { location: '', type: '', address: '' } 
   ]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/operatingSite');
+        const fetchData = response.data;
+        setSiteData([...fetchData, { location: '', type: '', address: '' }]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+      
+    };
+
+    fetchData();
+  }, []);
+
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
@@ -33,6 +51,7 @@ const OperatingSites = () => {
             name="location"
             value={site.location}
             onChange={(e) => handleInputChange(index, e)}
+            
           />
         </td>
         <td>
@@ -41,6 +60,8 @@ const OperatingSites = () => {
             name="type"
             value={site.type}
             onChange={(e) => handleInputChange(index, e)}
+            
+
           >
             <option value="">Choose...</option>
             <option value="Primary">Primary</option>
@@ -55,11 +76,23 @@ const OperatingSites = () => {
             name="address"
             value={site.address}
             onChange={(e) => handleInputChange(index, e)}
+            
           />
         </td>
       </tr>
     ));
   };
+
+  const handleSubmit = async () => {
+    const filteredData = siteData.filter(site => site.location && site.type && site.address);
+    try {
+      await axios.post('http://localhost:5000/operatingSite', filteredData);
+      alert('Data submitted successfully');
+    } catch (error) {
+      console.error('Error submitting data:', error);
+    }
+  };
+
 
   return (
     <div className="flex">
@@ -78,6 +111,9 @@ const OperatingSites = () => {
               {generateRows()}
             </tbody>
           </table>
+          <button onClick={handleSubmit} className="mt-4 p-2 bg-blue-500 text-white">
+            Submit Changes
+          </button>
         </div>
       </div>
     </div>

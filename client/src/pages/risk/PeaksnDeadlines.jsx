@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const PeaksnDeadlines = () => {
   const [siteData, setSiteData] = useState([
-    { name: '', description: '', time: '', dayofWeek: '', businessDay: '', calenderDay: '', month: '' }
+    { name: '', description: '', timeoftheday: '', dayoftheweek: '', businessday: '', calenderday: '', month: '' }
   ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/peaksnDeadline');
+        const fetchData = response.data;
+        setSiteData([...fetchData, { name: '', description: '', timeoftheday: '', dayoftheweek: '', businessday: '', calenderday: '', month: '' }]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
@@ -11,15 +26,14 @@ const PeaksnDeadlines = () => {
     newData[index][name] = value;
     setSiteData(newData);
 
-    // Automatically add a new row if editing the last row and it's not empty
     if (
       index === newData.length - 1 &&
       newData[index].name &&
       newData[index].description &&
-      newData[index].time &&
-      newData[index].dayofWeek &&
-      newData[index].businessDay &&
-      newData[index].calenderDay &&
+      newData[index].timeoftheday &&
+      newData[index].dayoftheweek &&
+      newData[index].businessday &&
+      newData[index].calenderday &&
       newData[index].month
     ) {
       addEmptyRow();
@@ -27,7 +41,7 @@ const PeaksnDeadlines = () => {
   };
 
   const addEmptyRow = () => {
-    setSiteData([...siteData, { name: '', description: '', time: '', dayofWeek: '', businessDay: '', calenderDay: '', month: '' }]);
+    setSiteData([...siteData, { name: '', description: '', timeoftheday: '', dayoftheweek: '', businessday: '', calenderday: '', month: '' }]);
   };
 
   const generateRows = () => {
@@ -54,80 +68,86 @@ const PeaksnDeadlines = () => {
           />
         </td>
         <td>
-  <input
-    type="time"
-    className="w-full border-none focus:ring-transparent text-center"
-    placeholder="Enter the time"
-    name="time"
-    value={site.time}
-    onChange={(e) => handleInputChange(index, e)}
-  />
-</td>
-
-<td>
-  <select
-    className="w-full border-none focus:ring-transparent text-center"
-    name="dayofWeek"
-    value={site.dayofWeek}
-    onChange={(e) => handleInputChange(index, e)}
-  >
-    <option value="Select Day">Select Day</option>
-    <option value="Monday">Monday</option>
-    <option value="Tuesday">Tuesday</option>
-    <option value="Wednesday">Wednesday</option>
-    <option value="Thursday">Thursday</option>
-    <option value="Friday">Friday</option>
-    <option value="Saturday">Saturday</option>
-    <option value="Sunday">Sunday</option>
-  </select>
-</td>
-
-<td>
-  <input
-    type="date"
-    className="w-full border-none focus:ring-transparent text-center"
-    placeholder="Enter Business Day"
-    name="businessDay"
-    value={site.businessDay}
-    onChange={(e) => handleInputChange(index, e)}
-  />
-</td>
-
+          <input
+            type="time"
+            className="w-full border-none focus:ring-transparent text-center"
+            placeholder="Enter the time"
+            name="timeoftheday"
+            value={site.timeoftheday}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+        </td>
+        <td>
+          <select
+            className="w-full border-none focus:ring-transparent text-center"
+            name="dayoftheweek"
+            value={site.dayoftheweek}
+            onChange={(e) => handleInputChange(index, e)}
+          >
+            <option value="Select Day">Select Day</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+        </td>
+        <td>
+          <input
+            type="date"
+            className="w-full border-none focus:ring-transparent text-center"
+            placeholder="Enter Business Day"
+            name="businessday"
+            value={site.businessday}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+        </td>
         <td>
           <input
             type="date"
             className="w-full border-none focus:ring-transparent text-center"
             placeholder="Enter Calender Day"
-            name="calenderDay"
-            value={site.calenderDay}
+            name="calenderday"
+            value={site.calenderday}
             onChange={(e) => handleInputChange(index, e)}
           />
         </td>
         <td>
-  <select
-    className="w-full border-none focus:ring-transparent text-center"
-    name="month"
-    value={site.month}
-    onChange={(e) => handleInputChange(index, e)}
-  >
-    <option value="">Select Month</option>
-    <option value="January">January</option>
-    <option value="February">February</option>
-    <option value="March">March</option>
-    <option value="April">April</option>
-    <option value="May">May</option>
-    <option value="June">June</option>
-    <option value="July">July</option>
-    <option value="August">August</option>
-    <option value="September">September</option>
-    <option value="October">October</option>
-    <option value="November">November</option>
-    <option value="December">December</option>
-  </select>
-</td>
-
+          <select
+            className="w-full border-none focus:ring-transparent text-center"
+            name="month"
+            value={site.month}
+            onChange={(e) => handleInputChange(index, e)}
+          >
+            <option value="">Select Month</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+        </td>
       </tr>
     ));
+  };
+
+  const handleSubmit = async () => {
+    const filteredData = siteData.filter(site => site.name && site.description && site.timeoftheday && site.dayoftheweek && site.businessday && site.calenderday && site.month);
+    try {
+      await axios.post('http://localhost:5000/peaksnDeadline', filteredData);
+      alert('Data submitted successfully');
+    } catch (error) {
+      console.error('Error submitting data:', error);
+    }
   };
 
   return (
@@ -150,6 +170,9 @@ const PeaksnDeadlines = () => {
               {generateRows()}
             </tbody>
           </table>
+          <button onClick={handleSubmit} className="mt-4 p-2 bg-blue-500 text-white">
+            Submit Changes
+          </button>
         </div>
       </div>
     </div>
