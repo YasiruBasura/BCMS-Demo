@@ -1,5 +1,5 @@
 const express = require("express");
-const { getOperatingSites, createOperatingSite } = require("../controllers/OperatingSiteController");
+const { getOperatingSites, createOperatingSite, deleteOperatingSite } = require("../controllers/OperatingSiteController");
 const router = express.Router();
 
 
@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.post("/", createOperatingSite);
 router.get("/", getOperatingSites);
+router.delete("/:id", deleteOperatingSite);
 
 
 

@@ -30,6 +30,15 @@ const createOperatingSite = async (req, res) =>
         }
     }
 
+    const deleteOperatingSite = async (req, res) => {
+        try {
+          await OperatingSite.findByIdAndDelete(req.params.id);
+          res.json("Operating Site Deleted.");
+          console.log(req.params.id);
+        } catch (err) {
+          res.status(400).json("Error: " + err);
+        }
+      };
 
 
 
@@ -37,5 +46,6 @@ const createOperatingSite = async (req, res) =>
 
   module.exports = {
     getOperatingSites,
-    createOperatingSite
+    createOperatingSite,
+    deleteOperatingSite
   };

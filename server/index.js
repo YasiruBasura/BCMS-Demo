@@ -22,6 +22,8 @@ mongoose
 const operatingSiteRoute = require("./routes/OperatingSiteRoute");
 app.use("/operatingSite", operatingSiteRoute);
 
+const peaksnDeadlinesRoute = require("./routes/PeaksnDeadlineRoute");
+app.use("/peaksnDeadline", peaksnDeadlinesRoute);
 
 
 //start server
