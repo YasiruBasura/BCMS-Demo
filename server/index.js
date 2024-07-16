@@ -25,6 +25,21 @@ app.use("/operatingSite", operatingSiteRoute);
 const peaksnDeadlinesRoute = require("./routes/PeaksnDeadlineRoute");
 app.use("/peaksnDeadline", peaksnDeadlinesRoute);
 
+const criticalFunctionRoute = require("./routes/CriticalFunctionRoute");
+app.use("/criticalFunction", criticalFunctionRoute);
+
+const resourceRoute = require("./routes/ResourceRoute");
+app.use("/resource", resourceRoute);
+
+const resourceRequiredRoute = require("./routes/ResourcesRequiredRoute");
+app.use("/resource", resourceRequiredRoute);
+
+const internalDependancyRoute = require("./routes/InternalDependRoute");
+app.use("/resource", internalDependancyRoute);
+
+const externalDependancyRoute = require("./routes/ExternalDependRoute");
+app.use("/resource", externalDependancyRoute);
+
 
 //start server
 app.listen(port, () => {
