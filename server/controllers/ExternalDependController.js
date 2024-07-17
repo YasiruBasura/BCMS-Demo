@@ -3,8 +3,10 @@ const ExternalDepend = require("../models/ExternalDependModel");
 
 const getExternalDepend = async (req, res) => 
     {
+        const {sectionName} = req.query;
         try {
-            const externalDependencies = await ExternalDepend.find();
+            const query = sectionName ? { sectionName } : {};
+            const externalDependencies = await ExternalDepend.find(query);
             res.status(200).json(externalDependencies);
             console.log(req.method);
         } catch (err) {

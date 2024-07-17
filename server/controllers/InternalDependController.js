@@ -3,8 +3,10 @@ const InternalDepend = require("../models/InternalDependModel");
 
 const getInternalDepend = async (req, res) => 
     {
+        const {sectionName} = req.query;
         try {
-            const internalDependencies = await InternalDepend.find();
+            const query = sectionName ? { sectionName } : {};
+            const internalDependencies = await InternalDepend.find(query);
             res.status(200).json(internalDependencies);
             console.log(req.method);
         } catch (err) {

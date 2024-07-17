@@ -18,6 +18,8 @@ import CriticalFunctions from "./pages/risk/CriticalFunctions";
 import PeaksnDeadlines from "./pages/risk/PeaksnDeadlines";
 import Resources from "./pages/risk/Resources";
 import Version from "./pages/risk/Version";
+import InternalDependencies from "./pages/risk/InternalDependencies";
+import ExternalDependencies from "./pages/risk/ExternalDependencies";
 
 function App() {
   return (
@@ -47,6 +49,8 @@ function App() {
           <Route path ="/peaksNdeadlines" element = {<PeaksnDeadlines/>}/>  
           <Route path ="/resources" element = {<Resources/>}/>
           <Route path="/versions" element= {<Version/>}></Route>
+          <Route path="/internalDependencies" element = {<InternalDependencies/>}/>
+          <Route path="/externalDependencies" element = {<ExternalDependencies/>}/>
          
           
       

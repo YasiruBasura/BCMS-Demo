@@ -9,7 +9,7 @@ const Resources = forwardRef(({selectedMainSection}, ref) => {
       try {
         const response = await axios.get('http://localhost:5000/resource', { params: {sectionName: selectedMainSection}});
         const fetchData = response.data;
-        setSiteData([...fetchData, {sectionName:selectedMainSection,name: '', altname: '', rto: '', rpo: ''}]);
+        setSiteData([...fetchData, {sectionName:selectedMainSection, name: '', altname: '', rto: '', rpo: ''}]);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -40,7 +40,7 @@ const Resources = forwardRef(({selectedMainSection}, ref) => {
     if (
       index === newData.length - 1 &&
       newData[index].name &&
-      newData[index].altName &&
+      newData[index].altname &&
       newData[index].rto &&
       newData[index].rpo
     ) {
@@ -49,7 +49,7 @@ const Resources = forwardRef(({selectedMainSection}, ref) => {
   };
 
   const addEmptyRow = () => {
-    setSiteData([...siteData, { name: '', altName: '', rto: '', rpo: '' }]);
+    setSiteData([...siteData, { name: '', altname: '', rto: '', rpo: '' }]);
   };
 
   const generateRows = () => {

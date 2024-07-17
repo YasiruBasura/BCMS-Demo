@@ -7,6 +7,8 @@ import CriticalFunctions from "./CriticalFunctions";
 import PeaksnDeadlines from "./PeaksnDeadlines";
 import Resources from "./Resources";
 import Version from "./Version";
+import InternalDependencies from "./InternalDependencies";
+import ExternalDependencies from "./ExternalDependencies";
 
 const BIAmain = () => {
   const [mainSections, setMainSections] = useState([
@@ -34,6 +36,8 @@ const BIAmain = () => {
   const criticalFunctionsRef = useRef();
   const peaksnDeadlinesRef = useRef();
   const resourcesRef = useRef();
+  const internalDependenciesRef = useRef();
+  const externalDependenciesRef = useRef();
 
   const handleSave = () => {
     if (operatingSitesRef.current) {
@@ -47,6 +51,12 @@ const BIAmain = () => {
     }
     if (resourcesRef.current) {
       resourcesRef.current.saveData();
+    }
+    if (internalDependenciesRef.current) {
+      internalDependenciesRef.current.saveData();
+    }
+    if (externalDependenciesRef.current) {
+      externalDependenciesRef.current.saveData();
     }
    
   };
@@ -126,6 +136,15 @@ const BIAmain = () => {
               Resources
             </h2>
             <Resources ref={resourcesRef} selectedMainSection={selectedMainSection} />
+            <h2 className="font-bold text-[#52B14A] text-xl ml-5 mt-20">
+              Internal Dependencies
+            </h2>
+            <InternalDependencies ref={internalDependenciesRef} selectedMainSection={selectedMainSection} />
+            <h2 className="font-bold text-[#52B14A] text-xl ml-5 mt-20">
+              External Dependencies
+            </h2>
+            <ExternalDependencies ref={externalDependenciesRef} selectedMainSection={selectedMainSection} />
+            
           </div>
         </div>
       </div>

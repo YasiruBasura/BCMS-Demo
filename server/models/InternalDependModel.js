@@ -3,6 +3,12 @@ const Schema = mongoose.Schema;
 
 const InternalDependSchema = new Schema(
     {
+        sectionName:{
+            type: String,
+            required: true,
+        },
+
+
         criticalFunction: {
             type: String,
             required: true,
