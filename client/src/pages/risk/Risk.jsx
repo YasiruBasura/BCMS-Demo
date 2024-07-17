@@ -25,7 +25,7 @@ const Risk = () => {
               <table class="table-fixed w-full border-separate border-spacing-4">
                 <tbody>
                  
-                  <tr>
+                  {/* <tr>
                     <td>
                       <label
                         htmlFor="Owner"
@@ -144,7 +144,7 @@ const Risk = () => {
                         onChange={(e) => setPurpose(e.target.value)}
                       />
                     </td>
-                  </tr>
+                  </tr> */}
                   <tr>
                     <td>
                       <label
@@ -230,18 +230,7 @@ const Risk = () => {
               </table>
             </div>
 
-            <div className=" flex justify-end mt-4 mb-2 mr-4">
-              <Link to="/docControl">
-                <button className="mt-6 mr-2 rounded-md bg-[#52B14A] px-7 py-2 text-m font-semibold text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">
-                  Document History
-                </button>
-              </Link>
-              <Link to="/docControl">
-                <button className="mt-6 rounded-md bg-[#52B14A] px-3 py-2 text-m font-semibold text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">
-                  Submit Changes
-                </button>
-              </Link>
-            </div>
+           
 
       
           </>

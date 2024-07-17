@@ -10,8 +10,10 @@ const OperatingSite = require("../models/OperatingSiteModel");
 
 const getOperatingSites = async (req, res) => 
     {
+        const {sectionName} = req.query;
         try {
-            const operatingSites = await OperatingSite.find();
+            const query = sectionName ? { sectionName } : {};
+            const operatingSites = await OperatingSite.find(query);
             res.status(200).json(operatingSites);
             console.log(req.method);
         } catch (err) {
@@ -24,7 +26,6 @@ const createOperatingSite = async (req, res) =>
         try{
             const operatingSite = await OperatingSite.create(req.body);
             res.status(200).json(operatingSite);
-            console.log(req.method);
         } catch(err){
             res.status(400).json({ message: err });
         }

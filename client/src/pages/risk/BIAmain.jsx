@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import Risk from "./Risk";
 import OperatingSites from "./OperatingSites";
@@ -14,18 +15,27 @@ const BIAmain = () => {
     "Finance",
   ]);
   const [selectedMainSection, setSelectedMainSection] = useState("Digital Platform");
-  const [newMainSection, setNewMainSection] = useState("");
+  // const [newMainSection, setNewMainSection] = useState("");
 
   const handleMainSectionChange = (e) => {
     setSelectedMainSection(e.target.value);
   };
 
-  const handleAddMainSection = () => {
-    if (newMainSection && !mainSections.includes(newMainSection)) {
-      setMainSections([...mainSections, newMainSection]);
-      setSelectedMainSection(newMainSection);
-      setNewMainSection("");
+  // const handleAddMainSection = () => {
+  //   if (newMainSection && !mainSections.includes(newMainSection)) {
+  //     setMainSections([...mainSections, newMainSection]);
+  //     setSelectedMainSection(newMainSection);
+  //     setNewMainSection("");
+  //   }
+  // };
+
+  const operatingSitesRef = useRef();
+
+  const handleSave = () => {
+    if (operatingSitesRef.current) {
+      operatingSitesRef.current.saveData();
     }
+   
   };
 
   return (
@@ -50,13 +60,13 @@ const BIAmain = () => {
                       {section}
                     </option>
                   ))}
-                  <option value="new">Add new section</option>
+                  {/* <option value="new">Add new section</option> */}
                 </select>
                 <span className="text-4xl ">{selectedMainSection}</span>
               </span>
             </h2>
           </div>
-          {selectedMainSection === "new" && (
+          {/* {selectedMainSection === "new" && (
             <div className="flex items-center mt-4">
               <input
                 type="text"
@@ -72,13 +82,24 @@ const BIAmain = () => {
                 Add
               </button>
             </div>
-          )}
+          )} */}
           <div className="border mt-5 bg-cyan-50 rounded-2xl mx-5">
             <Risk />
+            <div className=" flex justify-end mt-4 mb-2 mr-4">
+              <Link to="/docControl">
+                <button className="mt-6 mr-2 rounded-md bg-[#52B14A] px-7 py-2 text-m font-semibold text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">
+                  Document History
+                </button>
+              </Link>
+                <button onClick={handleSave} className="mt-6 rounded-md bg-[#52B14A] px-3 py-2 text-m font-semibold text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">
+                  Submit Changes
+                </button>
+             
+            </div>
             <h2 className="font-bold text-[#52B14A] text-xl ml-5 mt-20">
               Operating Sites
             </h2>
-            <OperatingSites />
+            <OperatingSites ref={operatingSitesRef} selectedMainSection={selectedMainSection} />
             <h2 className="font-bold text-[#52B14A] text-xl ml-5 mt-20">
               Critical Business Functions
             </h2>

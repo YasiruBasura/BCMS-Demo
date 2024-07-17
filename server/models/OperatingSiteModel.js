@@ -3,6 +3,12 @@ const Schema = mongoose.Schema;
 
 const OperatingSiteSchema = new Schema(
     {
+
+        sectionName:{
+            type: String,
+            required: true,
+        },
+
         location: {
             type: String,
             required: true,
