@@ -3,6 +3,12 @@ const Schema = mongoose.Schema;
 
 const PeaksnDeadlineSchema = new Schema(
     {
+        
+        sectionName:{
+            type: String,
+            required: true,
+        },
+        
         name: {
             type: String,
             required: true,

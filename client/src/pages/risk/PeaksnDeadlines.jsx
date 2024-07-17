@@ -1,24 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import axios from 'axios';
 
-const PeaksnDeadlines = () => {
-  const [siteData, setSiteData] = useState([
-    { name: '', description: '', timeoftheday: '', dayoftheweek: '', businessday: '', calenderday: '', month: '' }
-  ]);
+const PeaksnDeadlines = forwardRef(({selectedMainSection}, ref) => {
+  const [siteData, setSiteData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/peaksnDeadline');
+        const response = await axios.get('http://localhost:5000/peaksnDeadline', { params: {sectionName: selectedMainSection}});
         const fetchData = response.data;
-        setSiteData([...fetchData, { name: '', description: '', timeoftheday: '', dayoftheweek: '', businessday: '', calenderday: '', month: '' }]);
+        setSiteData([...fetchData, {sectionName:selectedMainSection, name: '', description: '', timeoftheday: '', dayoftheweek: '', businessday: '', calenderday: '', month: '' }]);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [selectedMainSection]);
+
+  useImperativeHandle(ref, () => ({
+    saveData: async () => {
+      const filteredData = siteData.filter(site =>site.sectionName && site.name && site.description && site.timeoftheday && site.dayoftheweek && site.businessday && site.calenderday && site.month);
+      try {
+        await axios.post('http://localhost:5000/peaksnDeadline', filteredData);
+      } catch (error) {
+        console.error('Error submitting data:' , error);
+      }
+    },
+
+  }));
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
@@ -140,15 +150,6 @@ const PeaksnDeadlines = () => {
     ));
   };
 
-  const handleSubmit = async () => {
-    const filteredData = siteData.filter(site => site.name && site.description && site.timeoftheday && site.dayoftheweek && site.businessday && site.calenderday && site.month);
-    try {
-      await axios.post('http://localhost:5000/peaksnDeadline', filteredData);
-      alert('Data submitted successfully');
-    } catch (error) {
-      console.error('Error submitting data:', error);
-    }
-  };
 
   return (
     <div className="flex">
@@ -170,13 +171,11 @@ const PeaksnDeadlines = () => {
               {generateRows()}
             </tbody>
           </table>
-          <button onClick={handleSubmit} className="mt-4 p-2 bg-blue-500 text-white">
-            Submit Changes
-          </button>
+        
         </div>
       </div>
     </div>
   );
-};
+});
 
 export default PeaksnDeadlines;

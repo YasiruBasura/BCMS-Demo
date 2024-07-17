@@ -32,13 +32,13 @@ const resourceRoute = require("./routes/ResourceRoute");
 app.use("/resource", resourceRoute);
 
 const resourceRequiredRoute = require("./routes/ResourcesRequiredRoute");
-app.use("/resource", resourceRequiredRoute);
+app.use("/resourceRequired", resourceRequiredRoute);
 
 const internalDependancyRoute = require("./routes/InternalDependRoute");
-app.use("/resource", internalDependancyRoute);
+app.use("/internalDependancy", internalDependancyRoute);
 
 const externalDependancyRoute = require("./routes/ExternalDependRoute");
-app.use("/resource", externalDependancyRoute);
+app.use("/externalDependancy", externalDependancyRoute);
 
 
 //start server

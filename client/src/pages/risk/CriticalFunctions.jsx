@@ -1,9 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
+import axios from 'axios';
 
-const CriticalFunctions = () => {
-  const [siteData, setSiteData] = useState([
-    { function: '', description: '', criticality: '', rto: '', rpo: '', mtpd: '' }
-  ]);
+const CriticalFunctions = forwardRef(({selectedMainSection}, ref) => {
+  const [siteData, setSiteData] = useState([ ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/criticalFunction', { params: {sectionName: selectedMainSection}});
+        const fetchData = response.data;
+        setSiteData([...fetchData, {sectionName:selectedMainSection, function: '', description: '', criticality: '', rto: '', rpo: '', mtpd: '' }]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [selectedMainSection]);
+
+  useImperativeHandle(ref, () => ({
+    saveData: async () => {
+      const filteredData = siteData.filter(site =>site.sectionName && site.function && site.description && site.criticality && site.rto && site.rpo && site.mtpd);
+      try {
+        await axios.post('http://localhost:5000/criticalFunction', filteredData);
+      } catch (error) {
+        console.error('Error submitting data:' , error);
+      }
+    },
+
+  }));
+
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
@@ -119,6 +145,6 @@ const CriticalFunctions = () => {
       </div>
     </div>
   );
-};
+});
 
 export default CriticalFunctions;

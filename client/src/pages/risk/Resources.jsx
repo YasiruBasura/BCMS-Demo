@@ -1,17 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
+import axios from 'axios';
 
-const Resources = () => {
-  const [siteData, setSiteData] = useState([
-    { name: '', altName: '', rto: '', rpo: '' }
-  ]);
+const Resources = forwardRef(({selectedMainSection}, ref) => {
+  const [siteData, setSiteData] = useState([ ]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/resource', { params: {sectionName: selectedMainSection}});
+        const fetchData = response.data;
+        setSiteData([...fetchData, {sectionName:selectedMainSection,name: '', altname: '', rto: '', rpo: ''}]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [selectedMainSection]);
+
+  useImperativeHandle(ref, () => ({
+    saveData: async () => {
+      const filteredData = siteData.filter(site =>site.sectionName && site.name && site.altname && site.rto && site.rpo );
+      try {
+        await axios.post('http://localhost:5000/resource', filteredData);
+      } catch (error) {
+        console.error('Error submitting data:' , error);
+      }
+    },
+
+  }));
+  
+  
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const newData = [...siteData];
     newData[index][name] = value;
     setSiteData(newData);
 
-    // Automatically add a new row if editing the last row and it's not empty
     if (
       index === newData.length - 1 &&
       newData[index].name &&
@@ -45,8 +70,8 @@ const Resources = () => {
             type="text"
             className="w-full border-none focus:ring-transparent text-center"
             placeholder="Enter the alternate name"
-            name="altName"
-            value={site.altName}
+            name="altname"
+            value={site.altname}
             onChange={(e) => handleInputChange(index, e)}
           />
         </td>
@@ -95,6 +120,6 @@ const Resources = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Resources;

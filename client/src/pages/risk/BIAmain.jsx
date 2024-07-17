@@ -31,10 +31,22 @@ const BIAmain = () => {
   // };
 
   const operatingSitesRef = useRef();
+  const criticalFunctionsRef = useRef();
+  const peaksnDeadlinesRef = useRef();
+  const resourcesRef = useRef();
 
   const handleSave = () => {
     if (operatingSitesRef.current) {
       operatingSitesRef.current.saveData();
+    }
+    if (criticalFunctionsRef.current) {
+      criticalFunctionsRef.current.saveData();
+    }
+    if (peaksnDeadlinesRef.current) {
+      peaksnDeadlinesRef.current.saveData();
+    }
+    if (resourcesRef.current) {
+      resourcesRef.current.saveData();
     }
    
   };
@@ -105,15 +117,15 @@ const BIAmain = () => {
             <h2 className="font-bold text-[#52B14A] text-xl ml-5 mt-20">
               Critical Business Functions
             </h2>
-            <CriticalFunctions />
+            <CriticalFunctions ref={criticalFunctionsRef} selectedMainSection={selectedMainSection} />
             <h2 className="font-bold text-[#52B14A] text-xl ml-5 mt-20">
               Business Peaks and Deadlines
             </h2>
-            <PeaksnDeadlines />
+            <PeaksnDeadlines ref={peaksnDeadlinesRef} selectedMainSection={selectedMainSection} />
             <h2 className="font-bold text-[#52B14A] text-xl ml-5 mt-20">
               Resources
             </h2>
-            <Resources />
+            <Resources ref={resourcesRef} selectedMainSection={selectedMainSection} />
           </div>
         </div>
       </div>

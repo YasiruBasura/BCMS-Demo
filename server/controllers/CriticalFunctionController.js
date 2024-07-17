@@ -3,8 +3,10 @@ const CriticalFunction = require("../models/CriticalFunctionModel");
 
 const getCriticalFunctions = async (req, res) => 
     {
+        const {sectionName} = req.query;
         try {
-            const criticalFunctions = await CriticalFunction.find();
+            const query = sectionName ? { sectionName } : {};
+            const criticalFunctions = await CriticalFunction.find(query);
             res.status(200).json(criticalFunctions);
             console.log(req.method);
         } catch (err) {

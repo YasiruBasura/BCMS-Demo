@@ -3,8 +3,10 @@ const Resource = require("../models/ResourceModel");
 
 const getResources = async (req, res) => 
     {
+        const {sectionName} = req.query;
         try {
-            const resources = await Resource.find();
+            const query = sectionName ? { sectionName } : {};
+            const resources = await Resource.find(query);
             res.status(200).json(resources);
             console.log(req.method);
         } catch (err) {

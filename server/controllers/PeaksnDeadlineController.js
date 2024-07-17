@@ -3,8 +3,10 @@ const PeaksnDeadline = require("../models/PeaksnDeadlineModel");
 
 const getPeaksnDeadlines = async (req, res) => 
     {
+        const {sectionName} = req.query;
         try {
-            const peaksnDeadlines = await PeaksnDeadline.find();
+            const query = sectionName ? { sectionName } : {};
+            const peaksnDeadlines = await PeaksnDeadline.find(query);
             res.status(200).json(peaksnDeadlines);
             console.log(req.method);
         } catch (err) {

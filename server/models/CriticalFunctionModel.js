@@ -3,6 +3,13 @@ const Schema = mongoose.Schema;
 
 const CriticalFunctionSchema = new Schema(
     {
+
+        sectionName:{
+            type: String,
+            required: true,
+        },
+
+        
         function: {
             type: String,
             required: true,
