@@ -6,6 +6,7 @@ import OperatingSites from "./OperatingSites";
 import CriticalFunctions from "./CriticalFunctions";
 import PeaksnDeadlines from "./PeaksnDeadlines";
 import Resources from "./Resources";
+import Version from "./Version";
 
 const BIAmain = () => {
   const [mainSections, setMainSections] = useState([
@@ -85,6 +86,7 @@ const BIAmain = () => {
           )} */}
           <div className="border mt-5 bg-cyan-50 rounded-2xl mx-5">
             <Risk />
+            <Version/>
             <div className=" flex justify-end mt-4 mb-2 mr-4">
               <Link to="/docControl">
                 <button className="mt-6 mr-2 rounded-md bg-[#52B14A] px-7 py-2 text-m font-semibold text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">

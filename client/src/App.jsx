@@ -17,6 +17,7 @@ import OperatingSites from "./pages/risk/OperatingSites";
 import CriticalFunctions from "./pages/risk/CriticalFunctions";
 import PeaksnDeadlines from "./pages/risk/PeaksnDeadlines";
 import Resources from "./pages/risk/Resources";
+import Version from "./pages/risk/Version";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path ="/criticalFunctions" element = {<CriticalFunctions/>}/>
           <Route path ="/peaksNdeadlines" element = {<PeaksnDeadlines/>}/>  
           <Route path ="/resources" element = {<Resources/>}/>
+          <Route path="/versions" element= {<Version/>}></Route>
          
           
       
