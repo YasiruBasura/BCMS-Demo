@@ -40,6 +40,9 @@ app.use("/internalDependancy", internalDependancyRoute);
 const externalDependancyRoute = require("./routes/ExternalDependRoute");
 app.use("/externalDependancy", externalDependancyRoute);
 
+const versionRoute = require("./routes/VersionRoute");
+app.use("/version", versionRoute);
+
 
 //start server
 app.listen(port, () => {
