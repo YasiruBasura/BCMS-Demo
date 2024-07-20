@@ -1,7 +1,31 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Sidebar from '../../components/Sidebar'  
+import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 
 const DocControl = () => {
+
+    const [version, setVersion] = useState("");
+    const location = useLocation();
+    const {selectedMainSection} = location.state || {}; 
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('http://localhost:5000/version', { params: {sectionName: selectedMainSection}});
+            const fetchData = response.data;
+            setVersion(fetchData);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+
+        fetchData();
+        }, []);
+
+        console.log(selectedMainSection);
+
+
     return (
         <div className='flex'>
         <div className='mt-20 mb-10'>

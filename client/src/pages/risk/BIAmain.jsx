@@ -9,6 +9,7 @@ import Resources from "./Resources";
 import Version from "./Version";
 import InternalDependencies from "./InternalDependencies";
 import ExternalDependencies from "./ExternalDependencies";
+import { useNavigate } from 'react-router-dom'
 
 const BIAmain = () => {
   const [mainSections, setMainSections] = useState([
@@ -18,12 +19,17 @@ const BIAmain = () => {
     "Finance",
   ]);
   const [selectedMainSection, setSelectedMainSection] = useState("Digital Platform");
+  const navigate = useNavigate();
   // const [newMainSection, setNewMainSection] = useState("");
 
   const handleMainSectionChange = (e) => {
     setSelectedMainSection(e.target.value);
   };
 
+
+  const handleVersionClick =()=>{
+    navigate("/docControl",{state:{selectedMainSection:selectedMainSection}});
+  }
   // const handleAddMainSection = () => {
   //   if (newMainSection && !mainSections.includes(newMainSection)) {
   //     setMainSections([...mainSections, newMainSection]);
@@ -110,11 +116,14 @@ const BIAmain = () => {
             <Risk />
             <Version/>
             <div className=" flex justify-end mt-4 mb-2 mr-4">
-              <Link to="/docControl">
-                <button className="mt-6 mr-2 rounded-md bg-[#52B14A] px-7 py-2 text-m font-semibold text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">
-                  Document History
+              {/* <Link to="/docControl"> */}
+                <button 
+                  onClick={handleVersionClick} 
+                  className="mt-6 mr-2 rounded-md bg-[#52B14A] px-7 py-2 text-m font-semibold text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">
+                    Document History
                 </button>
-              </Link>
+              {/* </Link> */}
+
                 <button onClick={handleSave} className="mt-6 rounded-md bg-[#52B14A] px-3 py-2 text-m font-semibold text-white shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600">
                   Submit Changes
                 </button>
