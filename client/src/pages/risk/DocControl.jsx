@@ -21,9 +21,11 @@ const DocControl = () => {
         };
 
         fetchData();
-        }, []);
+        },
+        
+        []);
 
-        console.log(selectedMainSection);
+        // console.log(selectedMainSection);
 
 
     return (

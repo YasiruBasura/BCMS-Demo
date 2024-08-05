@@ -44,6 +44,7 @@ const BIAmain = () => {
   const resourcesRef = useRef();
   const internalDependenciesRef = useRef();
   const externalDependenciesRef = useRef();
+  const versionRef = useRef();
 
   const handleSave = () => {
     if (operatingSitesRef.current) {
@@ -63,6 +64,9 @@ const BIAmain = () => {
     }
     if (externalDependenciesRef.current) {
       externalDependenciesRef.current.saveData();
+    }
+    if (versionRef.current) {
+      versionRef.current.saveData();
     }
    
   };
@@ -114,7 +118,7 @@ const BIAmain = () => {
           )} */}
           <div className="border mt-5 bg-cyan-50 rounded-2xl mx-5">
             <Risk />
-            <Version/>
+            <Version ref={versionRef} selectedMainSection={selectedMainSection}/>
             <div className=" flex justify-end mt-4 mb-2 mr-4">
               {/* <Link to="/docControl"> */}
                 <button 
